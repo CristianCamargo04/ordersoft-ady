@@ -7,7 +7,11 @@ class Producto{
     private $id_categoria;
     private $precio;
 
-    public function __construct(){
+    public function __construct($nombre=null,$desc=null,$id_categoria=null,$precio=null){
+		$this->nombre = $nombre;
+		$this->desc = $desc;
+		$this->id_categoria = $id_categoria;
+		$this->precio = $precio;
     }
 
     public function getId(){

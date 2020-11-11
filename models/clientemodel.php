@@ -12,8 +12,7 @@ class ClienteModel extends Model{
         $this->cliente = new Cliente();
     }
 
-    public function insertar($cliente)
-    {
+    public function insertar($cliente){
         $query = $this->db->conexion()->prepare('INSERT INTO cliente (documento, nombres, apellidos, email, contraseña, telefono, direccion) VALUES(:documento, :nombres, :apellidos, :email, :contrasena, :telefono, :direccion)');
         try {
               $query->execute([

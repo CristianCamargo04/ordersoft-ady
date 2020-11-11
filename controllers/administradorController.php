@@ -31,6 +31,35 @@ class AdministradorController extends Controller{
     }
 
     public function actionNuevo(){
-        $this->view('administrador/nuevo');
+        try{
+            $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+            $this->view('administrador/nuevo',$datos);
+        }catch(\Throwable $th){
+            $this->actionHome();
+        }
+    }
+
+    public function actionregistrar(){
+        if(isset($_POST['nombre'],$_POST['descr'],$_POST['id_categoria'],$_POST['precio']) 
+        && is_numeric($_POST['precio'])){
+            $nombre = $_POST['nombre'];
+            $desc = $_POST['descr'];
+            $id_categoria = $_POST['id_categoria'];
+            $precio = $_POST['precio'];
+            $producto = new Producto($nombre,$desc,$id_categoria ,$precio);
+            try {
+                $this->productoModel->insertar($producto);
+                $this->actionNuevo();
+            } catch (\Throwable $th) {
+                echo $th;
+            }
+        }else{
+            echo "<script>alert('Datos Incompletos)</script>";
+            $this->actionNuevo();
+        }   
     }
 }
+

@@ -12,12 +12,14 @@ class ProductoModel extends Model{
         $this->producto = new Producto();
     }
 
-    public function insertar($producto)
-    {
-        $query = $this->db->conexion()->prepare('INSERT INTO carrito (id_cliente) VALUES(:id_cliente)');
+    public function insertar($producto){
+        $query = $this->db->conexion()->prepare('INSERT INTO producto (nombre, descr, id_categoria, precio) VALUES(:nombre, :descr, :id_categoria, :precio)');
         try {
               $query->execute([
-                    'id_cliente' => $producto->getId_cliente()
+                    'nombre' => $producto->getNombre(),
+                    'descr' => $producto->getDesc(),
+                    'id_categoria' => $producto->getId_categoria(),
+                    'precio' => $producto->getPrecio()
               ]);
              return true;
         } catch (PDOException $e) {
@@ -25,5 +27,5 @@ class ProductoModel extends Model{
             print_r('Ocurrio un fallo', $e);
             return false;
         }
-    }
+    }    
 }

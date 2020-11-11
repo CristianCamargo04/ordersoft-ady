@@ -2,9 +2,10 @@
 class Categoria{
     private $id;
     private $nombre;
-    private $desc;
     
-    public function __construct(){
+    public function __construct($id=null, $nombre=null){
+		$this->id = $id;
+		$this->nombre = $nombre;
 	}
 	
 	public function getId(){
@@ -21,13 +22,5 @@ class Categoria{
 
 	public function setNombre($nombre){
 		$this->nombre = $nombre;
-	}
-
-	public function getDesc(){
-		return $this->desc;
-	}
-
-	public function setDesc($desc){
-		$this->desc = $desc;
 	}
 }

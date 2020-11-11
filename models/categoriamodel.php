@@ -12,12 +12,16 @@ class CategoriaModel extends Model{
         $this->categoria = new Categoria();
     }
 
-    public function getCategorias($categoria)
-    {
-        $query = $this->db->conexion()->prepare('SELECT * FROM categorias');
+    public function getCategorias(){
+        $data = array();
+        $query = $this->db->conexion()->prepare('SELECT * FROM categoria');
         try {
-              $query->execute();
-             return true;
+            $query->execute();
+            while($row = $query->fetch()){
+                $nuevaCategoria = new Categoria($row['id'],$row['nombre']);
+                array_push($data, $nuevaCategoria);
+            }
+            return $data;
         } catch (PDOException $e) {
             //throw $th;
             print_r('Ocurrio un fallo', $e);
