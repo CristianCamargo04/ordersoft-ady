@@ -18,7 +18,11 @@ class AdministradorController extends Controller{
     }
 
     public function actionIndex(){
-        $this->view('index');
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+        $this->view('index',$datos);
     }
 
     public function actionError(){

@@ -5,18 +5,15 @@
                     <div class="f__category">
                         <p class="f--title">Categorias</p>
                         <ul class="f__ul">
-                            <li class="f__li">
-                                <a class="f__li--a" href="">Burger</a>
-                            </li>
-                            <li class="f__li">
-                                <a class="f__li--a" href="">Pizza</a>
-                            </li>
-                            <li class="f__li">
-                                <a class="f__li--a" href="">Hot Dog</a>
-                            </li>
-                            <li class="f__li">
-                                <a class="f__li--a" href="">Salchipapa</a>
-                            </li>
+                        <?php 
+                        foreach($categorias as $c){
+                        ?>
+                        <li class="f__li">
+                            <a class="f__li--a" href="<?=URL?>categoria/listar?id=<?=$c->getId()?>"><?=$c->getNombre()?></a>
+                        </li>
+                        <?php
+                        }
+                        ?>
                         </ul>
                     </div>
                     <div class="f__help">

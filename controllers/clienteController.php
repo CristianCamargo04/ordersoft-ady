@@ -2,19 +2,27 @@
 include 'entities/Cliente.php';
 include 'models/clientemodel.php';
 include 'models/carritomodel.php';
+include 'entities/Categoria.php';
+include 'models/categoriamodel.php';
 
 class ClienteController extends Controller{
 
    protected $clienteModel;
    protected $carritoModel;
+   protected $categoriaModel;
 
     public function __construct(){
         $this->clienteModel = $this->model('cliente'); 
         $this->carritoModel = $this->model('carrito'); 
+        $this->categoriaModel = $this->model('categoria');
     }
 
     public function actionIndex(){
-        $this->view('index');
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+        $this->view('index',$datos);
     }
 
     public function actionHome(){
