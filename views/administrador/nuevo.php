@@ -18,7 +18,8 @@
             </div>
             <ul class="list__ul">
                 <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>administrador/nuevo">Nuevo</a></li>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="#">Productos</a></li>
+                <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>administrador/categorias">Categorias</a></li>
+                <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>administrador/productos">Productos</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>administrador/home">Perfil</a></li>
             </ul>
         </div>

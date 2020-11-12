@@ -46,6 +46,14 @@ class AdministradorController extends Controller{
         }
     }
 
+    public function actioncategorias(){
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+        $this->view('administrador/categorias',$datos);
+    }
+
     public function actionregistrar(){
         if(isset($_POST['nombre'],$_POST['descr'],$_POST['id_categoria'],$_POST['precio']) 
         && is_numeric($_POST['precio'])){
