@@ -31,7 +31,7 @@
     </header>
     <section class="container__category">
         <div class="register__category">
-            <form action="<?=URL?>categoria/registrar" method="POST">
+            <form action="<?= URL ?>categoria/registrar" method="POST">
                 <label class="data--lbl" for="nombre">Nombre</label>
                 <input class="data--inpt" type="text" placeholder="Nombre de la Categoria" name="nombre" required>
                 <button class="category--btn">Agregar Categoria</button>
@@ -49,9 +49,9 @@
                 foreach ($categorias as $c) {
                 ?>
                     <tr>
-                        <td><?=$c->getNombre()?></td>
+                        <td><?= $c->getNombre() ?></td>
                         <td>
-                            <a href="<?=URL?>categoria/eliminar?id=<?=$c->getId()?>"><span class="material-icons action-icon">delete</span></a>
+                            <a href="<?= URL ?>categoria/eliminar?id=<?= $c->getId() ?>"><span class="material-icons action-icon">delete</span></a>
                         </td>
                     </tr>
                 <?php

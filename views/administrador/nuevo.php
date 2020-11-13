@@ -7,7 +7,6 @@
     <title>Productos</title>
     <link rel="stylesheet" href="<?=URL?>public/css/admin_product.css">
     <link rel="stylesheet" href="<?=URL?>public/css/footer.css">
-    <link rel="stylesheet" media="(min-width: 1900px)" href="<?=URL?>public/css/responsive.css" />
 </head>
 <body>
     <header id="header">
