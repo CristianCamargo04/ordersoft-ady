@@ -36,9 +36,11 @@ class CategoriaController extends Controller{
 
     public function actionListar(){
         $id_categoria = $_GET["id"];
+        $categorias = $this->categoriaModel->getCategorias();
         $productos = $this->productoModel->getProductos($id_categoria);
         $datos = [
-            'productos' => $productos
+            'productos' => $productos,
+            'categorias' => $categorias
         ];
         $this->view('categoria/vista-productos',$datos);
     }

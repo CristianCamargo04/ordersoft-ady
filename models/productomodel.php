@@ -76,6 +76,7 @@ class ProductoModel extends Model{
             );
             while($row = $query->fetch()){
                 $nuevoProducto = new Producto($row['nombre'],$row['descr'],$row['id_categoria'],$row['precio']);
+                $nuevoProducto->setImagen($row['imagen']);
                 array_push($data, $nuevoProducto);
             }
             return $data;

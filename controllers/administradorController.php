@@ -31,7 +31,11 @@ class AdministradorController extends Controller{
     }
 
     public function actionHome(){
-        $this->view('administrador/home');
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+        $this->view('administrador/home',$datos);
     }
 
     public function actionNuevo(){
