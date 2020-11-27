@@ -1,7 +1,7 @@
 <?php
 
 // Clase controladora de las rutas, las cuales son descritas de la siguiente manera:
-// Controlador/Metodo/Parametros
+// Controlador/Metodo/Parametro
 class App
 {
     //Se define un controlador por defecto, en este caso "HomeController"
