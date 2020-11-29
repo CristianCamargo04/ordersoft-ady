@@ -76,6 +76,28 @@ class ProductoModel extends Model{
             );
             while($row = $query->fetch()){
                 $nuevoProducto = new Producto($row['nombre'],$row['descr'],$row['id_categoria'],$row['precio']);
+                $nuevoProducto->setId($row['id']);
+                $nuevoProducto->setImagen($row['imagen']);
+                array_push($data, $nuevoProducto);
+            }
+            return $data;
+        } catch (PDOException $e) {
+            //throw $th;
+            print_r('Ocurrio un fallo', $e);
+            return false;
+        }
+    }
+
+    public function getProducto($id){
+        $data = array();
+        $query = $this->db->conexion()->prepare('SELECT * FROM producto WHERE id = :id AND descontinuado = 0');
+        try {
+            $query->execute(
+                ['id' => $id]
+            );
+            while($row = $query->fetch()){
+                $nuevoProducto = new Producto($row['nombre'],$row['descr'],$row['id_categoria'],$row['precio']);
+                $nuevoProducto->setId($row['id']);
                 $nuevoProducto->setImagen($row['imagen']);
                 array_push($data, $nuevoProducto);
             }

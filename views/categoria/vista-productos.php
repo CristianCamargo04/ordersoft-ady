@@ -36,7 +36,7 @@
             <form class="form-price">
                 <input type="number" min="0" placeholder="Desde $">
                 <input type="number" min="0" placeholder="Hasta $">
-                <button>Filtrar</button>
+                <button type="button">Filtrar</button>
             </form>
         </aside>
         <article class="list__products">
@@ -53,7 +53,9 @@
                     </div>
                     <div class="container__products--options">
                         <span><?= $p->getDesc() ?></span>
-                        <button>Ver Producto</button>
+                        <form action="<?= URL ?>categoria/getproducto" method="post">
+                            <button name="id_producto" value="<?= $p->getId() ?>">Ver Producto</button>
+                        </form>
                     </div>
                 </div>
             <?php

@@ -1,12 +1,16 @@
 <?php
 class Valoracion{
     private $id;
-    private $id_cliente;
+	private $id_cliente;
+	private $cliente;
     private $id_producto;
     private $calificacion;
     private $comentario;
 
-    public function __construct(){
+    public function __construct($cliente=null, $calificacion=null, $comentario=null){
+		$this->cliente = $cliente;
+		$this->calificacion = $calificacion;
+		$this->comentario = $comentario;
     }
 
     public function getId(){
@@ -19,6 +23,14 @@ class Valoracion{
 
 	public function getId_cliente(){
 		return $this->id_cliente;
+	}
+
+	public function setCliente($cliente){
+		$this->cliente = $cliente;
+	}
+
+	public function getCliente(){
+		return $this->cliente;
 	}
 
 	public function setId_cliente($id_cliente){
