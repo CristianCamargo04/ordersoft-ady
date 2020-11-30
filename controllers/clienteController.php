@@ -45,7 +45,9 @@ class ClienteController extends Controller{
                     $doc = $clienteModel->existe($email,$contrasena);
                     $_SESSION['cliente'] = $doc;
                     echo $_SESSION['cliente'];
-                    $this->actionHome();
+                    echo "<script>
+                    window.location='" . URL . "cliente/home';
+                 </script>";
                 }else{
                     echo "<script>alert('Datos Incorrectos')</script>";
                     $this->actionIndex();

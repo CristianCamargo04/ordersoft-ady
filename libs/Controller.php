@@ -15,19 +15,19 @@ class Controller
 
         if (isset($_SESSION['user'])) {
 
-            if (file_exists('views/admin/' . $view . '.php')) {
+            if (file_exists('views/administrador/' . $view . '.php')) {
 
                 foreach ($data as $key => $value) {
                     $$key = $value;
                 }
 
-                require_once 'views/admin/' . $view . '.php';
+                require_once 'views/administrador/' . $view . '.php';
             } else {
                 header('location:' . URL . '');
             }
         } 
         /*
-        Se añade la condición  de que si existe la sección de estudiante 
+        Se añade la condición  de que si existe la sección de cliente 
         se lleve a las vistas de este 
         */
         else if(isset($_SESSION['cliente'])){
