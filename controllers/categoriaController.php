@@ -59,7 +59,11 @@ class CategoriaController extends Controller{
         foreach ($valoraciones as $v){
             $cant+=$v->getCalificacion();
         }
-        $total = $cant/count($valoraciones);
+        if (count($valoraciones) != 0) {
+            $total = $cant/count($valoraciones);
+        }else{
+            $total = 0;
+        }
         $producto = $this->productoModel->getProducto($id_producto);
 
         $datos = [

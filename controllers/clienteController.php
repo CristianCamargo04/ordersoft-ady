@@ -25,8 +25,9 @@ class ClienteController extends Controller{
         $this->view('index',$datos);
     }
 
-    public function actionHome(){
-        $this->view('cliente/home');
+    public function actionHome($correo){
+        $datos = ["cliente" => $correo];
+        $this->view('cliente/home',$datos);
     }
 
     public function actionError(){
@@ -36,7 +37,7 @@ class ClienteController extends Controller{
 
     public function actionLogin(){
         if(isset($_POST['email'],$_POST['contraseña'])){
-            session_start();
+            // session_start();
             $email = $_POST['email'];
             $contrasena = $_POST['contraseña'];
     
@@ -44,15 +45,15 @@ class ClienteController extends Controller{
                 if($clienteModel->existe($email,$contrasena) != null){
                     $doc = $clienteModel->existe($email,$contrasena);
                     $_SESSION['cliente'] = $doc;
-                    echo $_SESSION['cliente'];
-                    echo "<script>
-                    window.location='" . URL . "cliente/home';
-                 </script>";
+                    $this->actionHome($email);
+                //     echo "<script>
+                //     window.location='" . URL . "cliente/home';
+                //  </script>";
                 }else{
                     echo "<script>alert('Datos Incorrectos')</script>";
                     $this->actionIndex();
                 }
-            $this->actionIndex();
+            // $this->actionIndex();
         }else{
             echo "<script>alert('Datos Incompletos')</script>";
             $this->actionIndex();

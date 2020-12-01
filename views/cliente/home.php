@@ -8,7 +8,7 @@
 <body>
     
 <p>
-    Hola bienvenido <?php echo $_SESSION["cliente"]; ?>
+    Hola bienvenido <?=$cliente?>
 </p>
 
 <a href="<?=URL?>cliente/cerrar">Cerrar sesión</a>

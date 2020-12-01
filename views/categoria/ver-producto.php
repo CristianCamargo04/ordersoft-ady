@@ -42,13 +42,7 @@
                             <span class="material-icons">
                                 star
                             </span>
-                            <?php
-                            if ($total > 0) {
-                            ?>
-                                <span class="details--price--rating"><?= $total ?></span>
-                            <?php
-                            }
-                            ?>
+                            <span class="details--price--rating"><?= $total ?></span>
                         </div>
                         <div class="counter">
                             <button class="subtract" disabled>-</button>
