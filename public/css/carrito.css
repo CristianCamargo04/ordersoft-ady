@@ -82,6 +82,7 @@ table td img{
     color: #000000;
     border: 1px solid #000000;
     display: inline-block;
+    cursor: pointer;
 }
 .counter{
     width: 150px;
