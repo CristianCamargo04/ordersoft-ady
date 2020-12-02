@@ -26,7 +26,6 @@ class ClienteModel extends Model{
               ]);
              return true;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }

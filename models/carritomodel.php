@@ -21,7 +21,20 @@ class CarritoModel extends Model{
               ]);
              return true;
         } catch (PDOException $e) {
-            //throw $th;
+            print_r('Ocurrio un fallo', $e);
+            return false;
+        }
+    }
+
+    public function actualizar($total, $id_cliente){
+        $query = $this->db->conexion()->prepare('UPDATE carrito SET valor_total = :total WHERE carrito.id_cliente = :id_cliente');
+        try {
+              $query->execute([
+                    'total' => $total,
+                    'id_cliente' => $id_cliente
+              ]);
+             return true;
+        } catch (PDOException $e) {
             print_r('Ocurrio un fallo', $e);
             return false;
         }

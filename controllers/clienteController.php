@@ -108,10 +108,16 @@ class ClienteController extends Controller{
         }
         $productosCarrito = $this->carritoproductoModel->listarCarrito($id_carrito);
         $categorias = $this->categoriaModel->getCategorias();
-            $datos = [
-                'productos' => $productosCarrito,
-                'categorias' => $categorias
-            ];
+        $total = 0;
+        foreach ($productosCarrito as $pc) {
+            $total += ($pc->getPrecio())*($pc->getCantidad());
+        }
+        $this->carritoModel->actualizar($total,$id_carrito);
+        $datos = [
+            'productos' => $productosCarrito,
+            'categorias' => $categorias,
+            'total' => $total
+        ];    
         $this->view('carrito',$datos);
     }
 

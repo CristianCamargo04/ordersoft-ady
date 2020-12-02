@@ -14,6 +14,24 @@ class CarritoproductoModel extends Model{
         $this->producto = new Producto();
     }
 
+    // public function insert(){
+    //     $query = $this->db->conexion()->prepare('INSERT INTO cliente (documento, nombres, apellidos, email, contraseña, telefono, direccion) VALUES(:documento, :nombres, :apellidos, :email, :contrasena, :telefono, :direccion)');
+    //     try {
+    //           $query->execute([
+    //                 'documento' => $cliente->getDocumento(),
+    //                 'nombres' => $cliente->getNombres(),
+    //                 'apellidos' => $cliente->getApellidos(),
+    //                 'email' => $cliente->getEmail(),
+    //                 'contrasena' => $cliente->getContrasena(),
+    //                 'telefono' => $cliente->getTelefono(),
+    //                 'direccion' => $cliente->getDireccion()
+    //           ]);
+    //          return true;
+    //     } catch (PDOException $e) {
+    //         print_r('Ocurrio un fallo', $e);
+           
+    // }
+
     public function listarCarrito($id_carrito)
     {
         $data = array();
@@ -34,7 +52,6 @@ class CarritoproductoModel extends Model{
             }
             return $data;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }return false;
@@ -50,7 +67,6 @@ class CarritoproductoModel extends Model{
               ]);
              return true;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }

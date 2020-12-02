@@ -67,7 +67,7 @@
                         <td></td>
                         <td></td>
                         <td>Total</td>
-                        <td>$39.96</td>
+                        <td>$<?=$total?></td>
                     </tr>
                 </tbody>
             </table>
