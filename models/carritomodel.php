@@ -26,4 +26,5 @@ class CarritoModel extends Model{
             return false;
         }
     }
+    
 }

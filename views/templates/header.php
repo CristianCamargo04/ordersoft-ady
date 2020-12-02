@@ -28,7 +28,24 @@
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Categorias</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Preguntas</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Contacto</a></li>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="#"><span class="material-icons cart--icon">shopping_cart</span></a></li>
+                <?php 
+                    if (!isset($_SESSION['cliente'])) {
+                ?>
+                    <li class="list__ul__li"><a class="list__ul__li--a" onclick="openModal()"><span class="material-icons cart--icon">shopping_cart</span></a></li>
+                <?php 
+                    }else{
+                ?>     
+                    <li class="list__ul__li">
+                        <form class="form__button" action="<?=URL?>cliente/carrito" method="post">
+                            <button class="login--btn cart--icon" name="id_carrito" value="<?=$_SESSION['cliente']->getDocumento()?>">
+                                <span class="material-icons cart--icon">shopping_cart</span>
+                            </button>
+                        </form>
+                    </li>
+                <?php 
+                    }
+                ?>
+                
             </ul>
                 
         </div>

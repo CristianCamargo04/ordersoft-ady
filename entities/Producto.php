@@ -5,7 +5,8 @@ class Producto{
     private $nombre;
     private $desc;
     private $id_categoria;
-    private $precio;
+	private $precio;
+	private $cantidad;
 
     public function __construct($nombre=null,$desc=null,$id_categoria=null,$precio=null){
 		$this->nombre = $nombre;
@@ -60,5 +61,13 @@ class Producto{
 
 	public function setPrecio($precio){
 		$this->precio = $precio;
+	}
+
+	public function getCantidad(){
+		return $this->cantidad;
+	}
+
+	public function setCantidad($cantidad){
+		$this->cantidad = $cantidad;
 	}
 }

@@ -30,9 +30,9 @@ class AdministradorController extends Controller{
         $this->view('error',$datos);
     }
 
-    public function actionAdmin(){
-        $this->view('administrador/admin-login');
-    }
+    // public function actionAdmin(){
+    //     $this->view('administrador/admin-login');
+    // }
     
     public function actionHome(){
         $categorias = $this->categoriaModel->getCategorias();

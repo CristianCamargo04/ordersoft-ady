@@ -79,3 +79,12 @@ header{
 .cart--icon{
     color: #fff;
 }
+.login--btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.form__button{
+    border: none;
+    background-color: transparent;
+}

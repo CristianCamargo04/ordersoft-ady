@@ -1,20 +1,24 @@
 <?php
+
 include 'entities/Cliente.php';
 include 'models/clientemodel.php';
 include 'models/carritomodel.php';
 include 'entities/Categoria.php';
 include 'models/categoriamodel.php';
+include 'models/carritoproductomodel.php';
 
 class ClienteController extends Controller{
 
    protected $clienteModel;
    protected $carritoModel;
    protected $categoriaModel;
+   protected $carritoproductoModel;
 
     public function __construct(){
         $this->clienteModel = $this->model('cliente'); 
         $this->carritoModel = $this->model('carrito'); 
         $this->categoriaModel = $this->model('categoria');
+        $this->carritoproductoModel = $this->model('carritoproducto');
     }
 
     public function actionIndex(){
@@ -96,6 +100,33 @@ class ClienteController extends Controller{
             echo "<script>alert('Datos Incompletos)</script>";
             header("location: ". URL);
         }        
+    }
+
+    public function actionCarrito($id_carrito = null){
+        if ($id_carrito == null) {
+            $id_carrito = $_POST['id_carrito'];
+        }
+        $productosCarrito = $this->carritoproductoModel->listarCarrito($id_carrito);
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'productos' => $productosCarrito,
+                'categorias' => $categorias
+            ];
+        $this->view('carrito',$datos);
+    }
+
+    public function actionEliminarproducto(){
+        $data = $_POST['data'];
+        list($id_producto, $id_carrito) = explode(" ", $data);
+        
+        $productoBorrado = $this->carritoproductoModel->eliminar($id_producto, $id_carrito);
+        if ($productoBorrado) {
+            $this->actionCarrito($id_carrito);
+        }else{
+            echo "<script>alert('Error al eliminar')</script>";
+            $this->actionCarrito();
+
+        } 
     }
 
 }

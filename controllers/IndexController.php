@@ -16,6 +16,7 @@ class IndexController extends Controller{
             ];
         $this->view('index',$datos);
     }
+    
 
     public function actionError(){
         $datos = ["titlo" => 'error'];
