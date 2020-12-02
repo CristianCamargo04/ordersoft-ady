@@ -25,9 +25,12 @@ class ClienteController extends Controller{
         $this->view('index',$datos);
     }
 
-    public function actionHome($correo){
-        $datos = ["cliente" => $correo];
-        $this->view('cliente/home',$datos);
+    public function actionHome(){
+        $categorias = $this->categoriaModel->getCategorias();
+            $datos = [
+                'categorias' => $categorias
+            ];
+        $this->view('home',$datos);
     }
 
     public function actionError(){
@@ -37,15 +40,16 @@ class ClienteController extends Controller{
 
     public function actionLogin(){
         if(isset($_POST['email'],$_POST['contraseña'])){
-            // session_start();
+            
             $email = $_POST['email'];
             $contrasena = $_POST['contraseña'];
-    
             $clienteModel = new ClienteModel();
+
                 if($clienteModel->existe($email,$contrasena) != null){
-                    $doc = $clienteModel->existe($email,$contrasena);
-                    $_SESSION['cliente'] = $doc;
-                    $this->actionHome($email);
+                    session_start();
+                    $cliente = $clienteModel->existe($email,$contrasena);
+                    $_SESSION['cliente'] = $cliente;
+                    header("location: ". URL. "cliente/home/");
                 //     echo "<script>
                 //     window.location='" . URL . "cliente/home';
                 //  </script>";
@@ -53,7 +57,6 @@ class ClienteController extends Controller{
                     echo "<script>alert('Datos Incorrectos')</script>";
                     $this->actionIndex();
                 }
-            // $this->actionIndex();
         }else{
             echo "<script>alert('Datos Incompletos')</script>";
             $this->actionIndex();
@@ -91,7 +94,7 @@ class ClienteController extends Controller{
             }
         }else{
             echo "<script>alert('Datos Incompletos)</script>";
-            $this->actionIndex();
+            header("location: ". URL);
         }        
     }
 

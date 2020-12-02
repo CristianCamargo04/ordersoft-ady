@@ -42,10 +42,14 @@ class ClienteModel extends Model{
             ]);
             while($row = $query->fetch()){
                 $this->cliente->setDocumento($row['documento']);
+                $this->cliente->setNombres($row['nombres']);
+                $this->cliente->setApellidos($row['apellidos']);
                 $this->cliente->setEmail($row['email']);
-                $this->cliente->setContrasena($row['contraseña']);
+                $this->cliente->setImagen($row['imagen']);
+                $this->cliente->setDireccion($row['direccion']);
+                $this->cliente->setSupervisor($row['supervisor']);
             }
-            $find = $this->cliente->getDocumento();
+            $find = $this->cliente;
         }catch(PDOException $e){
             return null;
         }  

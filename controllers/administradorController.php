@@ -30,12 +30,48 @@ class AdministradorController extends Controller{
         $this->view('error',$datos);
     }
 
+    public function actionAdmin(){
+        $this->view('administrador/admin-login');
+    }
+    
     public function actionHome(){
         $categorias = $this->categoriaModel->getCategorias();
             $datos = [
                 'categorias' => $categorias
             ];
         $this->view('administrador/home',$datos);
+    }
+
+    public function actionLogin(){
+        if(isset($_POST['email'],$_POST['contraseña'])){
+            
+            $email = $_POST['email'];
+            $contrasena = $_POST['contraseña'];
+            $clienteModel = new ClienteModel();
+
+                if($clienteModel->existe($email,$contrasena) != null){
+                    session_start();
+                    $cliente = $clienteModel->existe($email,$contrasena);
+                    $_SESSION['cliente'] = $cliente;
+                    header("location: ". URL. "cliente/home/");
+                //     echo "<script>
+                //     window.location='" . URL . "cliente/home';
+                //  </script>";
+                }else{
+                    echo "<script>alert('Datos Incorrectos')</script>";
+                    $this->actionIndex();
+                }
+        }else{
+            echo "<script>alert('Datos Incompletos')</script>";
+            $this->actionIndex();
+        }
+    }
+
+    public function actionCerrar(){
+        session_start();
+        session_unset();
+        session_destroy();
+        $this->actionIndex();
     }
 
     public function actionNuevo(){

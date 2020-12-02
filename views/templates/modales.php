@@ -20,7 +20,7 @@
             <div class="container__login__options">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="cancelbtn">Cancelar</button>
-                <a href="<?=URL?>administrador/home"><i class="fas fa-user-cog" style="font-size: 30px; color:red;"></i></a>
+                <a href="<?=URL?>administrador/admin"><i class="fas fa-user-cog" style="font-size: 30px; color:red;"></i></a>
                 <div class="container__login__options--span">
                     <span><a href="#">¿Olvidó la contraseña?</a></span>
                     <span class="btn--register" onclick="registerModal()">Crea tu cuenta</span>

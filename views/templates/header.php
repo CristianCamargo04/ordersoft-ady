@@ -13,7 +13,18 @@
                 </div>
             </div>
             <ul class="list__ul">
-                <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
+                <?php 
+                    if (!isset($_SESSION['cliente'])) {
+                ?>
+                        <li class="list__ul__li"><button class="login--btn cart--icon" onclick="openModal()">Login</button></li>
+                <?php 
+                    }else{
+                ?>     
+                        <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>cliente/home"><?=$_SESSION['cliente']->getNombres()?></a></li>
+                        <li class="list__ul__li"><a class="list__ul__li--a" href="<?=URL?>cliente/cerrar">Cerrar sesión</a></li>
+                <?php 
+                    }
+                ?>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Categorias</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Preguntas</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Contacto</a></li>

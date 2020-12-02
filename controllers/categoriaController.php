@@ -20,7 +20,7 @@ class CategoriaController extends Controller{
     public function actionIndex(){
         $categorias = $this->categoriaModel->getCategorias();
         $datos = [
-            'categorias' => $categorias
+            'categorias' => $categorias,
         ];
         $this->view('index',$datos);
     }

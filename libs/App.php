@@ -18,7 +18,7 @@ class App
         // Se obtiene el primer elemto del array[0] el cual corresponde al controlador, se pone la primera  en mayuscula y se concatena Controller
         // ejemplo: alumno , se convierte en: AlumnoController
         $controllerName = ucfirst(strtolower($url[0])) . "Controller";
-
+        
         // Se comprueba si existe el controlador en la carpeta controllers mediante file_exists()
 
         if (file_exists("controllers/" . $controllerName . ".php")) {

@@ -12,7 +12,7 @@ class IndexController extends Controller{
     public function actionIndex(){
         $categorias = $this->categoriaModel->getCategorias();
             $datos = [
-                'categorias' => $categorias
+                'categorias' => $categorias,
             ];
         $this->view('index',$datos);
     }
@@ -23,8 +23,7 @@ class IndexController extends Controller{
     }
 
     public function actionAdmin(){
-        $datos = ['titulo' => 'Administrador'];
-        $this->view('login',$datos);
+        $this->view('admin-login');
     }
 }
 

@@ -27,15 +27,15 @@ class Controller
             }
         } 
         /*
-        Se añade la condición  de que si existe la sección de cliente 
+        Se añade la condición  de que si existe la sesión de cliente 
         se lleve a las vistas de este 
         */
         else if(isset($_SESSION['cliente'])){
+            
             if(file_exists('views/cliente/' . $view . '.php')){
                 foreach($data as $key => $value){
                     $$key = $value;
                 }
-                echo "<p>hola</p>";
                 require_once 'views/cliente/'. $view . '.php';
             }else{
                 header('location:' . URL . 'error');
