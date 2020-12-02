@@ -36,10 +36,10 @@
                     foreach ($productos as $p) {
                     ?>
                         <tr>
-                            <!-- <td class="product-remove"><a href="<?=URL?>cliente/eliminarproducto?id=<?=$p->getId()?>&idc=<?=$_SESSION['cliente']->getDocumento()?>" class="remove">x</a></td> -->
+                            
                             <td class="product-remove">
                                 <form action="<?=URL?>cliente/eliminarproducto" method="post">
-                                    <button name="data" value="<?=$p->getId()?> <?=$_SESSION['cliente']->getDocumento()?>">x</button>
+                                    <button class="remove" name="data" value="<?=$p->getId()?> <?=$_SESSION['cliente']->getDocumento()?>">x</button>
                                 </form>
                             </td>
                             <td><img src="<?=$p->getImagen()?>" alt=""></td>
