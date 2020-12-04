@@ -25,7 +25,26 @@
                 <?php 
                     }
                 ?>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="#">Categorias</a></li>
+                <li class="list__ul__li">
+                    <div class="icon">
+                        <a class="list__ul__li--a">Categorias</a>
+                        <div class="modal__cart">
+                            <div class="modal__cart__content">
+                                <ul>
+                                    <?php
+                                        foreach ($categorias as $c) {
+                                    ?>
+                                    <li>
+                                        <a href="<?= URL ?>categoria/listar?id=<?= $c->getId() ?>"><?= $c->getNombre() ?></a>
+                                    </li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Preguntas</a></li>
                 <li class="list__ul__li"><a class="list__ul__li--a" href="#">Contacto</a></li>
                 <?php 
