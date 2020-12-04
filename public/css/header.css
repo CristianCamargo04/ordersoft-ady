@@ -76,7 +76,10 @@ header{
 }
 .list__ul__li--a{
     color: #fff;
-    font-size: 1.2em;
+    font-size: 1.3em;
+}
+.list__ul__li--a span{
+    cursor: pointer;
 }
 .cart--icon{
     color: #fff;
@@ -89,4 +92,63 @@ header{
 .form__button{
     border: none;
     background-color: transparent;
+}
+.icon{
+    margin: 0;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+.icon .modal__cart{
+    position: absolute;
+    top: 0;
+    width: 200px;
+    font-size: 1.2em;
+    font-weight: 500;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+    transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.modal__cart:before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: -5px;
+    left: 50%;
+    background: white;
+    transform: translateX(-50%) rotate(45deg);
+}
+.list__ul__li:hover .modal__cart{
+    visibility: visible;
+    top: 40px;
+    opacity: 1;
+}
+.modal__cart__content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.modal__cart__content ul{
+    width: 100%;
+}
+.modal__cart__content ul li{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #8f8f8f;
+    margin-bottom: 4px;
+    padding: 10px;
+}
+.modal__cart__content ul li:hover{
+    background-color: #dd3333;
+    transition: .3s;
 }
