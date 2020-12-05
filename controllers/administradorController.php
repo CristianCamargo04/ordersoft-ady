@@ -6,112 +6,122 @@ include 'models/productomodel.php';
 include 'entities/Categoria.php';
 include 'models/categoriamodel.php';
 
-class AdministradorController extends Controller{
+class AdministradorController extends Controller
+{
     protected $administradorModel;
     protected $productoModel;
     protected $categoriaModel;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->administradorModel = $this->model('administrador');
         $this->productoModel = $this->model('producto');
         $this->categoriaModel = $this->model('categoria');
     }
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         $categorias = $this->categoriaModel->getCategorias();
-            $datos = [
-                'categorias' => $categorias
-            ];
-        $this->view('index',$datos);
+        $datos = [
+            'categorias' => $categorias
+        ];
+        $this->view('index', $datos);
     }
 
-    public function actionError(){
+    public function actionError()
+    {
         $datos = ["titlo" => 'error'];
-        $this->view('error',$datos);
+        $this->view('error', $datos);
     }
 
     // public function actionAdmin(){
     //     $this->view('administrador/admin-login');
     // }
-    
-    public function actionHome(){
+
+    public function actionHome()
+    {
         $categorias = $this->categoriaModel->getCategorias();
-            $datos = [
-                'categorias' => $categorias
-            ];
-        $this->view('administrador/home',$datos);
+        $datos = [
+            'categorias' => $categorias
+        ];
+        $this->view('administrador/home', $datos);
     }
 
-    public function actionLogin(){
-        if(isset($_POST['email'],$_POST['contraseña'])){
-            
-            $email = $_POST['email'];
-            $contrasena = $_POST['contraseña'];
-            $clienteModel = new ClienteModel();
-
-                if($clienteModel->existe($email,$contrasena) != null){
+    public function actionLogin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['usuario'], $_POST['email'], $_POST['contraseña'])) {
+                $usuario = $_POST['usuario'];
+                $email = $_POST['email'];
+                $contrasena = $_POST['contraseña'];
+                if ($this->administradorModel->existe($usuario, $email, $contrasena)->getUsuario() != null) {
                     session_start();
-                    $cliente = $clienteModel->existe($email,$contrasena);
-                    $_SESSION['cliente'] = $cliente;
-                    header("location: ". URL. "cliente/home/");
-                //     echo "<script>
-                //     window.location='" . URL . "cliente/home';
-                //  </script>";
-                }else{
+                    $administrador = $this->administradorModel->existe($usuario, $email, $contrasena);
+                    $_SESSION['admin'] = $administrador;
+                    header("location: " . URL . "administrador/home/");
+                } else {
                     echo "<script>alert('Datos Incorrectos')</script>";
                     $this->actionIndex();
                 }
-        }else{
-            echo "<script>alert('Datos Incompletos')</script>";
-            $this->actionIndex();
+            } else {
+                echo "<script>alert('Datos Incompletos')</script>";
+                $this->actionIndex();
+            }
+        } else {
+            $this->view('admin-login');
         }
     }
 
-    public function actionCerrar(){
+    public function actionCerrar()
+    {
         session_start();
         session_unset();
         session_destroy();
         $this->actionIndex();
     }
 
-    public function actionNuevo(){
-        try{
+    public function actionNuevo()
+    {
+        try {
             $categorias = $this->categoriaModel->getCategorias();
             $datos = [
                 'categorias' => $categorias
             ];
-            $this->view('administrador/nuevo',$datos);
-        }catch(\Throwable $th){
+            $this->view('administrador/nuevo', $datos);
+        } catch (\Throwable $th) {
             $this->actionHome();
         }
     }
 
-    public function actioncategorias(){
+    public function actioncategorias()
+    {
         $categorias = $this->categoriaModel->getCategorias();
-            $datos = [
-                'categorias' => $categorias
-            ];
-        $this->view('administrador/categorias',$datos);
+        $datos = [
+            'categorias' => $categorias
+        ];
+        $this->view('administrador/categorias', $datos);
     }
 
-    public function actionregistrar(){
-        if(isset($_POST['nombre'],$_POST['descr'],$_POST['id_categoria'],$_POST['precio']) 
-        && is_numeric($_POST['precio'])){
+    public function actionregistrar()
+    {
+        if (
+            isset($_POST['nombre'], $_POST['descr'], $_POST['id_categoria'], $_POST['precio'])
+            && is_numeric($_POST['precio'])
+        ) {
             $nombre = $_POST['nombre'];
             $desc = $_POST['descr'];
             $id_categoria = $_POST['id_categoria'];
             $precio = $_POST['precio'];
-            $producto = new Producto($nombre,$desc,$id_categoria ,$precio);
+            $producto = new Producto($nombre, $desc, $id_categoria, $precio);
             try {
                 $this->productoModel->insertar($producto);
                 $this->actionNuevo();
             } catch (\Throwable $th) {
                 echo $th;
             }
-        }else{
+        } else {
             echo "<script>alert('Datos Incompletos)</script>";
             $this->actionNuevo();
-        }   
+        }
     }
 }
-

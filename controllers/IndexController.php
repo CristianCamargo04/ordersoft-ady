@@ -1,6 +1,8 @@
 <?php
 include 'entities/Categoria.php';
 include 'models/categoriamodel.php';
+include 'entities/Cliente.php';
+include 'models/clientemodel.php';
 
 class IndexController extends Controller{
     protected $categoriaModel;
@@ -23,9 +25,7 @@ class IndexController extends Controller{
         $this->view('error',$datos);
     }
 
-    public function actionAdmin(){
-        $this->view('admin-login');
-    }
+    
 }
 
 ?>

@@ -5,6 +5,8 @@ include 'entities/Producto.php';
 include 'models/productomodel.php';
 include 'entities/Valoracion.php';
 include 'models/valoracionmodel.php';
+include 'entities/Cliente.php';
+include 'models/clientemodel.php';
 
 class CategoriaController extends Controller{
     protected $categoriaModel;

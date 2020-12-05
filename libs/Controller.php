@@ -13,7 +13,7 @@ class Controller
     {
         session_start();
 
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['admin'])) {
 
             if (file_exists('views/administrador/' . $view . '.php')) {
 
@@ -23,7 +23,7 @@ class Controller
 
                 require_once 'views/administrador/' . $view . '.php';
             } else {
-                header('location:' . URL . '');
+                header('location:' . URL . 'error');
             }
         } 
         /*
@@ -37,7 +37,14 @@ class Controller
                     $$key = $value;
                 }
                 require_once 'views/cliente/'. $view . '.php';
-            }else{
+            }else if (file_exists('views/' . $view . '.php')) {
+
+                foreach ($data as $key => $value) {
+                    $$key = $value;
+                }
+
+                require_once 'views/' . $view . '.php';
+            } else {
                 header('location:' . URL . 'error');
             }
         }

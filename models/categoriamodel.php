@@ -23,7 +23,6 @@ class CategoriaModel extends Model{
             }
             return $data;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }
@@ -41,7 +40,6 @@ class CategoriaModel extends Model{
             }
             return $existe;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return $existe;
         }
@@ -55,7 +53,6 @@ class CategoriaModel extends Model{
               ]);
              return true;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }
@@ -69,7 +66,6 @@ class CategoriaModel extends Model{
             ]);
             return true;
         } catch (PDOException $e) {
-            //throw $th;
             print_r('Ocurrio un fallo', $e);
             return false;
         }
