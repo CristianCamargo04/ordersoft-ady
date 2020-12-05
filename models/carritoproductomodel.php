@@ -7,30 +7,46 @@ require_once 'entities/CarritoProducto.php';
 class CarritoproductoModel extends Model{
 
     protected $carritoproducto;
+    protected $producto;
+    protected $find;
 
     public function __construct(){
         parent::__construct();
         $this->carritoproducto = new CarritoProducto();
         $this->producto = new Producto();
+        $this->find = 0;
     }
 
-    // public function insert(){
-    //     $query = $this->db->conexion()->prepare('INSERT INTO cliente (documento, nombres, apellidos, email, contraseña, telefono, direccion) VALUES(:documento, :nombres, :apellidos, :email, :contrasena, :telefono, :direccion)');
-    //     try {
-    //           $query->execute([
-    //                 'documento' => $cliente->getDocumento(),
-    //                 'nombres' => $cliente->getNombres(),
-    //                 'apellidos' => $cliente->getApellidos(),
-    //                 'email' => $cliente->getEmail(),
-    //                 'contrasena' => $cliente->getContrasena(),
-    //                 'telefono' => $cliente->getTelefono(),
-    //                 'direccion' => $cliente->getDireccion()
-    //           ]);
-    //          return true;
-    //     } catch (PDOException $e) {
-    //         print_r('Ocurrio un fallo', $e);
-           
-    // }
+    public function insert($id_carrito,$id_producto,$precio){
+        $query = $this->db->conexion()->prepare('INSERT INTO carrito_producto(id_carrito, id_producto, precio) VALUES (:id_carrito, :id_producto, :precio)');
+        try {
+              $query->execute([
+                    'id_carrito' => $id_carrito,
+                    'id_producto' => $id_producto,
+                    'precio' => $precio,
+              ]);
+             return true;
+        } catch (PDOException $e) {
+            print_r('Ocurrio un fallo', $e);
+        }   
+    }
+
+    public function existe($id_carrito,$id_producto){
+        $query = $this->db->conexion()->prepare('SELECT COUNT(*) as find FROM carrito_producto WHERE id_carrito = :id_carrito AND id_producto = :id_producto');
+        try{
+            $query->execute([
+                'id_carrito' => $id_carrito,
+                'id_producto' => $id_producto
+            ]);
+            while($row = $query->fetch()){
+                $this->find = $row['find'];
+            }
+            return  $this->find;
+        }catch(PDOException $e){
+            return $this->find;
+        }  
+        return $this->find;
+    }
 
     public function listarCarrito($id_carrito)
     {

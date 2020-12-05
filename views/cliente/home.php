@@ -56,6 +56,7 @@
             <span class="material-icons md-24" onclick="nextSlide();nextSlideText();">arrow_forward_ios</span>
         </ul>
     </section>
+    <a href="<?=URL?>cliente/agregarproducto">prueba</a>
     <?php require_once 'views/templates/footer.php';?>
     <script src="<?=URL?>public/js/app.js"></script>
 </body>
