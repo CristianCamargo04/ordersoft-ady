@@ -49,7 +49,23 @@
                             <div>1</div>
                             <button type="button">+</button>
                         </div>
-                        <button type="button" class="data-btn">AÑADIR AL CARRITO</button>
+                        <?php
+                        if (!isset($_SESSION['cliente'])) {
+                        ?>
+                            <button type="button" class="data-btn" onclick="openModal()">AÑADIR AL CARRITO</button>
+                            <?php
+                        } else {
+                            foreach ($producto as $p) {
+                            ?>
+                                <form action="<?= URL ?>cliente/agregarproducto" method="POST">
+                                    <button type="submit" class="data-btn" name="data" value="<?= $_SESSION['cliente']->getDocumento() ?> <?= $p->getId() ?> <?= $p->getPrecio() ?>">AÑADIR AL CARRITO</button>
+                                </form>
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        }
+                        ?>
                         </div>
                         <textarea class="data--txt" name="desc" rows="9" cols="40" placeholder="Escribe instrucciones especiales"></textarea>
                         <button class="data-btn" type="button">COMPRAR</button>

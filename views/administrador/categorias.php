@@ -14,21 +14,7 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="header__container list__content">
-            <div class="h__container--logosearch">
-                <div class="logosearch">
-                    <a href="<?= URL ?>" class="logo">OrderSoft</a>
-                </div>
-            </div>
-            <ul class="list__ul">
-                <li class="list__ul__li"><a class="list__ul__li--a" href="<?= URL ?>administrador/nuevo">Nuevo</a></li>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="<?= URL ?>administrador/categorias">Categorias</a></li>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="<?= URL ?>administrador/productos">Productos</a></li>
-                <li class="list__ul__li"><a class="list__ul__li--a" href="<?= URL ?>administrador/home">Perfil</a></li>
-            </ul>
-        </div>
-    </header>
+    <?php require_once 'views/administrador/header-admin.php'; ?>
     <section class="container__category">
         <div class="register__category">
             <form action="<?= URL ?>categoria/registrar" method="POST">

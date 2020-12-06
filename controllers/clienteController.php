@@ -134,16 +134,15 @@ class ClienteController extends Controller
         $this->view('carrito', $datos);
     }
 
-    public function actionAgregarproducto()
-    {
-        // $data = $_POST['data'];
-        // list($id_producto, $id_carrito, $precio) = explode(" ", $data);
-        // $this->carritoproductoModel->insert($id_carrito, $id_producto, $precio);
-        // $this->actionCarrito($id_carrito);
-
-        //validar que no este en carrito
-        // $estado = $this->carritoproductoModel->existe('1092390403',7);
-        $this->actionCarrito('1092390403');
+    public function actionAgregarproducto(){
+        $data = $_POST['data'];
+        list($id_producto, $id_carrito, $precio) = explode(" ", $data);
+        if (!$this->carritoproductoModel->existe($id_carrito,$id_producto)) {
+            $this->carritoproductoModel->insert($id_carrito, $id_producto, $precio);
+            $this->actionCarrito($id_carrito);
+        }else{
+            echo "ya existe";
+        }
     }
 
     public function actionEliminarproducto()

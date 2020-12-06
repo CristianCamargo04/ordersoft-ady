@@ -1,7 +1,7 @@
 <?php
 include 'entities/Categoria.php';
 include 'models/categoriamodel.php';
-include 'entities/Cliente.php';
+include 'models/administradormodel.php';
 include 'models/clientemodel.php';
 
 class IndexController extends Controller{
@@ -24,8 +24,6 @@ class IndexController extends Controller{
         $datos = ["titlo" => 'error'];
         $this->view('error',$datos);
     }
-
-    
 }
 
 ?>

@@ -13,9 +13,10 @@ class ProductoModel extends Model{
     }
 
     public function insertar($producto){
-        $query = $this->db->conexion()->prepare('INSERT INTO producto (nombre, descr, id_categoria, precio) VALUES(:nombre, :descr, :id_categoria, :precio)');
+        $query = $this->db->conexion()->prepare('INSERT INTO producto (imagen, nombre, descr, id_categoria, precio) VALUES(:imagen, :nombre, :descr, :id_categoria, :precio)');
         try {
               $query->execute([
+                    'imagen' => $producto->getImagen(),
                     'nombre' => $producto->getNombre(),
                     'descr' => $producto->getDesc(),
                     'id_categoria' => $producto->getId_categoria(),
