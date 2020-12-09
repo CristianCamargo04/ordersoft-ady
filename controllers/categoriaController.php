@@ -32,7 +32,7 @@ class CategoriaController extends Controller{
             $datos = [
                 'categorias' => $categorias
             ];
-        $this->view('administrador/categorias',$datos);
+        $this->view('categorias',$datos);
     }
 
     public function actionError(){
@@ -54,7 +54,11 @@ class CategoriaController extends Controller{
 
 
     public function actionGetproducto(){
-        $id_producto = $_POST["id_producto"];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id_producto = $_POST["id_producto"];
+        }else{
+            $id_producto = $_GET["id"]; 
+        }
         $categorias = $this->categoriaModel->getCategorias();
         $valoraciones = $this->valoracionModel->getValoraciones($id_producto);
         $cant = 0;

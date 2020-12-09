@@ -32,7 +32,6 @@
                 </form>
             </div>
         </section>
-        <?php require_once 'views/templates/footer.php';?>
     </div>
 </body>
 

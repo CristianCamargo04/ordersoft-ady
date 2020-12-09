@@ -43,7 +43,6 @@
             </form>
         </div>
     </section>
-    <?php require_once 'views/templates/footer.php'; ?>
     <script src="<?= URL ?>public/js/preloadImage.js"></script>
 </body>
 

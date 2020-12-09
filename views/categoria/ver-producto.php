@@ -57,9 +57,9 @@
                         } else {
                             foreach ($producto as $p) {
                             ?>
-                                <form action="<?= URL ?>cliente/agregarproducto" method="POST">
-                                    <button type="submit" class="data-btn" name="data" value="<?= $_SESSION['cliente']->getDocumento() ?> <?= $p->getId() ?> <?= $p->getPrecio() ?>">AÑADIR AL CARRITO</button>
-                                </form>
+                                <!-- <form action="cliente/agregarproducto" method="POST"> -->
+                                <a class="data-btn" href="<?=URL?>cliente/agregarproducto/<?=$p->getId()?>/<?= $p->getPrecio() ?>/<?= $_SESSION['cliente']->getDocumento() ?>">AÑADIR AL CARRITO</a>
+                                <!-- </form> -->
                             <?php
                             }
                             ?>

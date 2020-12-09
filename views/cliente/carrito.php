@@ -43,7 +43,7 @@
                                 </form>
                             </td>
                             <td><img src="<?=$p->getImagen()?>" alt=""></td>
-                            <td><a href="" class="title"><?=$p->getNombre()?></a></td>
+                            <td><a href="<?= URL ?>categoria/getproducto?id=<?=$p->getId()?>" class="title"><?=$p->getNombre()?></a></td>
                             <td><span>$<?=$p->getPrecio()?></span></td>
                             <td>
                                 <div class="counter">

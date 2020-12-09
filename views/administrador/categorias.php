@@ -47,7 +47,6 @@
             </tbody>
         </table>
     </section>
-    <?php require_once 'views/templates/footer.php'; ?>
 </body>
 
 </html>

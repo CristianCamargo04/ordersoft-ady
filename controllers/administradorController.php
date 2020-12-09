@@ -44,7 +44,7 @@ class AdministradorController extends Controller
         $datos = [
             'categorias' => $categorias
         ];
-        $this->view('administrador/home', $datos);
+        $this->view('home', $datos);
     }
 
     public function actionLogin()
@@ -58,8 +58,8 @@ class AdministradorController extends Controller
                     session_start();
                     $administrador = $this->administradorModel->existe($usuario, $email, $contrasena);
                     $_SESSION['admin'] = $administrador;
-                    // header("location: " . URL . "administrador/home");
-                    $this->actionHome();
+                    var_dump($administrador);
+                    header("location: " . URL . "administrador/home");
                 } else {
                     echo "<script>alert('Datos Incorrectos')</script>";
                     $this->actionIndex();
@@ -88,22 +88,22 @@ class AdministradorController extends Controller
             $datos = [
                 'categorias' => $categorias
             ];
-            $this->view('administrador/nuevo', $datos);
+            $this->view('nuevo', $datos);
         } catch (\Throwable $th) {
             $this->actionHome();
         }
     }
 
-    public function actioncategorias()
+    public function actionCategorias()
     {
         $categorias = $this->categoriaModel->getCategorias();
         $datos = [
             'categorias' => $categorias
         ];
-        $this->view('administrador/categorias', $datos);
+        $this->view('categorias', $datos);
     }
 
-    public function actionregistrar()
+    public function actionRegistrar()
     {
         # definimos la carpeta destino
         $carpetaDestino = "products/";
