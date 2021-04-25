@@ -1,0 +1,105 @@
+{{> header}}
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<!-- Index -->
+{{> modales}}
+<article class="block md:flex md:justify-center max-w-screen-2xl my-0 mx-auto bg-white">
+    <section class="p-4">
+        <img class="h-auto md:max-w-xl lg:max-w-3xl xl:max-w-4xl" src="/{{producto.dataValues.imagen}}" alt="producto">
+    </section>
+    <section class="p-4">
+        <div>
+            <span class="text-lg"><strong>{{producto.dataValues.nombre}}</strong></span>
+        </div>
+        <div class="flex">
+            <span class="mr-1"><strong>${{producto.dataValues.precio}}</strong></span>
+            <div class="flex items-center w-14 justify-around">
+                <span class="material-icons">
+                    star
+                </span>
+                <span class="font-bold"><strong>9.9</strong></span>
+            </div>
+        </div>
+        <label>Cantidad</label>
+        <div class="mb-2">
+            <input class="pl-4 w-16 appearance-none h-8 border border-gray-100 bg-gray-50 focus:outline-none"
+                type="number" min="1" value="1">
+        </div>
+        <div class="flex flex-col justify-center gap-1">
+            <button class="bg-red-600 rounded h-10 w-full text-white">Añadir al carrito</button>
+            <button class="bg-black rounded h-10 w-full text-white">Comprar</button>
+        </div>
+
+        <div class="block">
+            <span class="text-gray-700">Adicional</span>
+            <div class="mt-2">
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox"
+                            class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-offset-0 focus:ring-red-200 focus:ring-opacity-50"
+                            checked>
+                        <span class="ml-2">Tocineta</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox"
+                            class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-offset-0 focus:ring-red-200 focus:ring-opacity-50"
+                            checked>
+                        <span class="ml-2">Huevo codorniz</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox"
+                            class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-offset-0 focus:ring-red-200 focus:ring-opacity-50"
+                            checked>
+                        <span class="ml-2">Papas fritas</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+
+<div>
+    <div class="bg-white  border border-gray-200" x-data="{selected:null}">
+        <ul class="shadow-sm">
+
+            <li class="relative border-b border-gray-200">
+
+                <button type="button" class="w-full px-8 py-6 text-left" onclick="handle()"
+                    @click="selected !== 1 ? selected = 1 : selected = null">
+                    <div class="flex items-center justify-between">
+                        <span><strong>Informacion del Producto</strong></span>
+                        <span class="flex-shrink-0">
+                            <!-- + 
+                                    <path fill="currentColor" d="M12.159 7.2h-3.36v-3.36c0-0.442-0.358-0.48-0.8-0.48s-0.8 0.038-0.8 0.48v3.36h-3.359c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h3.359v3.36c0 0.442 0.358 0.48 0.8 0.48s0.8-0.038 0.8-0.48v-3.36h3.36c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z"></path>
+                                    -->
+                            <!-- -
+                                    <path fill="currentColor" d="M12.159 7.2h-8.319c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h8.319c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z"></path>
+                                    -->
+                            <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
+                                <path id="mas" fill="currentColor"
+                                    d="M12.159 7.2h-3.36v-3.36c0-0.442-0.358-0.48-0.8-0.48s-0.8 0.038-0.8 0.48v3.36h-3.359c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h3.359v3.36c0 0.442 0.358 0.48 0.8 0.48s0.8-0.038 0.8-0.48v-3.36h3.36c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z">
+                                </path>
+                                <path fill="currentColor"
+                                    d="M12.159 7.2h-8.319c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h8.319c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                </button>
+
+                <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container1"
+                    x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                        <p>{{producto.dataValues.descripcion}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{{> footer}}
+<script src="/js/header.js"></script>
+<script src="/js/producto/ver-producto.js"></script>

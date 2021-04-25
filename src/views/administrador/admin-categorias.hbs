@@ -1,0 +1,44 @@
+{{> administrador/header}}
+<!-- admin -->
+<link rel="stylesheet" href="/css/category.css">
+
+<h1 class="title-section">Categorias</h1>
+<section class="container__category">
+    <div class="register__category">
+        <form action="/administrador/categorias" method="POST">
+            <label class="data--lbl" for="nombre">Nombre</label>
+            <input type="hidden" name="id" value="null">
+            <input class="data--inpt" type="text" placeholder="Nombre de la Categoria" name="nombre" required>
+            <button class="category--btn">guardar</button>
+            <button id="id_cancelar" type="button" onclick="createCategoria(this)" style="display: none;"
+                class="category--btn">cancelar</button>
+        </form>
+    </div>
+    <table class="table__content">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each categorias}}
+            <tr>
+                <td>
+                    {{this.dataValues.nombre}}
+                </td>
+                <td>
+                    <form action="/administrador/eliminar-categoria" method="post">
+                        <input type="hidden" name="id" value="{{this.dataValues.id}}">
+                        <span onclick="updateCategoria({{this.dataValues.id}},'{{this.dataValues.nombre}}');"
+                            class="material-icons action-icon">update</span>
+                        <button type="submit"><span class="material-icons action-icon">delete</span></button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
+<script src="/js/administrador/admin-categorias.js"></script>
+{{> footer}}

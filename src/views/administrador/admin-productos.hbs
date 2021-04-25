@@ -1,0 +1,66 @@
+{{> administrador/header}}
+<!-- admin -->
+<link rel="stylesheet" href="/css/category.css">
+
+<h1 class="title-section">Productos</h1>
+<section class="container__category">
+    <table class="table__content">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acción</th>
+                <th>Ingredientes</th>
+                <th>Aprobar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each productos}}
+            <tr>
+                <td>{{this.dataValues.nombre}}</td>
+                <td>{{this.dataValues.categoria}}</td>
+                <td>${{this.dataValues.precio}}</td>
+                <td>{{this.dataValues.estado}}</td>
+                <td>
+                    <form action="/administrador/actualizar-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <span class="material-icons action-icon">update</span>
+                        </button>
+                    </form>
+                    <form action="/administrador/eliminar-producto" method="post">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <span class="material-icons action-icon">delete</span>
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/administrador/agregar-ingredientes-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <i class="fas fa-bacon action-icon"></i>
+                        </button>
+                    </form>
+                    <form action="/administrador/eliminar-ingredientes-producto" method="get">
+                        <input type="hidden" name="id_producto" value="{{this.dataValues.id}}">
+                        <button class="btn-icon" type="submit">
+                            <span class="material-icons action-icon">delete</span>
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/administrador/aprobar-producto" method="post">
+                        <input type="hidden" name="id" value="{{this.dataValues.id}}">
+                        <input type="hidden" name="nombre" value="{{this.dataValues.nombre}}">
+                        <button><span class="material-icons action-icon">create</span></button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
+{{> footer}}
